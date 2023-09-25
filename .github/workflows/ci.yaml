@@ -36,9 +36,16 @@ jobs:
 
     - name: Check Test Report
       run: |
-        cat test-reports/report.xml
-      # or to check if the file exists and its size
-      # test -s test-reports/report.xml && echo "File exists and is not empty" || echo "File does not exist or is empty"
+        if [ -f "test-reports/report.xml" ]; then
+          if [ -s "test-reports/report.xml" ]; then
+          echo "File exists and is not empty."
+          cat test-reports/report.xml
+          else
+        echo "File exists but is empty."
+        fi
+        else
+          echo "File does not exist."
+        fi
       
     - name: Archive Test Reports
       if: always() # ensures this step is run even if the previous step (Run Tests) fails
