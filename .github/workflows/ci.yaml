@@ -31,6 +31,16 @@ jobs:
       #with:
        # args: --severity-threshold=high
 
+    - name: Run Tests
+      run: npm test # Assumes npm test runs your tests and generates a test report
+      
+    - name: Archive Test Reports
+      if: always() # ensures this step is run even if the previous step (Run Tests) fails
+      uses: actions/upload-artifact@v2
+      with:
+        name: test-reports
+        path: test-reports/report.xml
+
     - name: Configure AWS credentials
       uses: aws-actions/configure-aws-credentials@v1
       with:
