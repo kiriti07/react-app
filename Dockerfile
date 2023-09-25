@@ -1,6 +1,7 @@
 FROM node:14-slim as build
 WORKDIR /usr/src/app
 COPY package*.json ./
+RUN [ ! -f package-lock.json ] && npm install || echo "package-lock.json exists"
 RUN npm ci
 COPY . .
 RUN npm run build
