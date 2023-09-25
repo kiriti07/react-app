@@ -20,9 +20,18 @@ jobs:
 
     - name: Install dependencies and run tests
       run: |
+        npm install react-app-rewired --save-dev
         yarn install
-        yarn add --dev jest-junit react-app-rewired
+        yarn add --dev jest-junit 
         yarn test
+
+    - name: Archive Test Reports
+      if: always()
+      uses: actions/upload-artifact@v2
+      with:
+        name: test-reports
+        path: test-reports/report.xml
+    
     # Integrating Snyk for Vulnerability Scanning
     #- name: Run Snyk to check for vulnerabilities
      # uses: snyk/actions/node@0.3.0
@@ -35,7 +44,7 @@ jobs:
       run: yarn test 
 
     - name: Run Tests
-      run: npm test -- --reporter xml --outFile test-reports/report.xml
+      run: npm test
 
     - name: Check Test Report
       run: |
