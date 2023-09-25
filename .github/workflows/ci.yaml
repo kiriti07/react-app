@@ -21,8 +21,8 @@ jobs:
     - name: Install dependencies and run tests
       run: |
         yarn install
-        yarn test
-        npm install --save-dev jest-junit
+        yarn add --dev jest-junit # <-- Ensure jest-junit is installed here
+        yarn test                 # <-- Don't need additional parameters here
 
     # Integrating Snyk for Vulnerability Scanning
     #- name: Run Snyk to check for vulnerabilities
@@ -31,6 +31,9 @@ jobs:
        # SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
       #with:
        # args: --severity-threshold=high
+       
+    - name: Run yarn Tests
+      run: yarn test 
 
     - name: Run Tests
       run: npm test -- --reporter xml --outFile test-reports/report.xml
