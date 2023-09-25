@@ -20,11 +20,9 @@ jobs:
 
     - name: Install dependencies and run tests
       run: |
-        npm install react-app-rewired --save-dev
         yarn install
-        yarn add --dev jest-junit # <-- Ensure jest-junit is installed here
-        yarn test                 # <-- Don't need additional parameters here
-
+        yarn add --dev jest-junit react-app-rewired
+        yarn test
     # Integrating Snyk for Vulnerability Scanning
     #- name: Run Snyk to check for vulnerabilities
      # uses: snyk/actions/node@0.3.0
