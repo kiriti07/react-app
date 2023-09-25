@@ -33,6 +33,12 @@ jobs:
 
     - name: Run Tests
       run: npm test # Assumes npm test runs your tests and generates a test report
+
+    - name: Check Test Report
+      run: |
+        cat test-reports/report.xml
+      # or to check if the file exists and its size
+      # test -s test-reports/report.xml && echo "File exists and is not empty" || echo "File does not exist or is empty"
       
     - name: Archive Test Reports
       if: always() # ensures this step is run even if the previous step (Run Tests) fails
