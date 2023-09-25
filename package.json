@@ -23,18 +23,18 @@
       "react-app/jest"
     ]
   },
+  "jest": {
+    "reporters": [
+      "default",
+      ["jest-junit", { "outputDirectory": "test-reports", "outputName": "report.xml" }]
+    ]
+  },
   "browserslist": {
     "production": [
       ">0.2%",
       "not dead",
       "not op_mini all"
     ],
-    "jest": {
-      "reporters": [
-        "default",
-          ["jest-junit", { "outputDirectory": "test-reports", "outputName": "report.xml" }]
-        ]
-      },
     "development": [
       "last 1 chrome version",
       "last 1 firefox version",
