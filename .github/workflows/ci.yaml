@@ -32,7 +32,7 @@ jobs:
        # args: --severity-threshold=high
 
     - name: Run Tests
-      run: npm test # Assumes npm test runs your tests and generates a test report
+      run: npm test -- --reporter xml --outFile test-reports/report.xml
 
     - name: Check Test Report
       run: |
