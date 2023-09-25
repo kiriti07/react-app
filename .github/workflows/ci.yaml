@@ -20,6 +20,7 @@ jobs:
 
     - name: Install dependencies and run tests
       run: |
+        npm install react-app-rewired --save-dev
         yarn install
         yarn add --dev jest-junit # <-- Ensure jest-junit is installed here
         yarn test                 # <-- Don't need additional parameters here
