@@ -23,6 +23,14 @@ jobs:
         yarn install
         yarn test
 
+    # Integrating Snyk for Vulnerability Scanning
+    #- name: Run Snyk to check for vulnerabilities
+     # uses: snyk/actions/node@0.3.0
+      #env:
+       # SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+      #with:
+       # args: --severity-threshold=high
+
     - name: Configure AWS credentials
       uses: aws-actions/configure-aws-credentials@v1
       with:
