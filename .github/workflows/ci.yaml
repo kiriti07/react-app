@@ -20,8 +20,8 @@ jobs:
 
     - name: Install dependencies and run tests
       run: |
-        yarn install
-        yarn test
+        npm install
+        npm test
     # Integrating Snyk for Vulnerability Scanning
     #- name: Run Snyk to check for vulnerabilities
      # uses: snyk/actions/node@0.3.0
