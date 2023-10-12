@@ -1,6 +1,13 @@
 name: CI/CD Pipeline
 
-on: 
+on:
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: 'Deploy to environment'
+        required: true
+        default: 'DEV'
+        enum: ['DEV', 'UAT', 'STAGE']
   push:
     branches:
       - main
@@ -75,3 +82,15 @@ jobs:
         echo "IMAGE_TAG: $IMAGE_TAG"
         docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
         docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
+
+    - name: Deploy to DEV
+      if: github.event.inputs.environment == 'DEV'
+      run: echo "Deploying to DEV environment"
+
+    - name: Deploy to UAT
+      if: github.event.inputs.environment == 'UAT'
+      run: echo "Deploying to UAT environment"
+    
+    - name: Deploy to STAGE
+      if: github.event.inputs.environment == 'STAGE'
+      run: echo "Deploying to STAGE environment"
